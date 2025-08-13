@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Successful - AeroParker</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      /* ==========================================
+         *           GLOBAL STYLES
+         * ========================================== */
+
+      body {
+        /* Matching animated gradient background from registration page */
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
+
+      /* Animated background gradient */
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* ==========================================
+         *         SUCCESS CONTAINER STYLES
+         * ========================================== */
+
+      .success-container {
+        /* Enhanced glass-morphism effect matching registration form */
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+          0 10px 20px rgba(0, 0, 0, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        padding: 3.5rem;
+        margin: 2rem auto;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        /* Celebration entrance animation */
+        animation: successBounce 1s ease-out;
+      }
+
+      /* Success container entrance animation */
+      @keyframes successBounce {
+        0% {
+          opacity: 0;
+          transform: translateY(50px) scale(0.8);
+        }
+        60% {
+          opacity: 1;
+          transform: translateY(-10px) scale(1.05);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* Celebratory decorative elements */
+      .success-container::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(34, 197, 94, 0.1) 0%,
+          transparent 70%
+        );
+        animation: rotate 25s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ==========================================
+         *           SUCCESS ICON STYLES
+         * ========================================== */
+
+      .success-icon {
+        font-size: 5rem;
+        color: #22c55e;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+        /* Pulsing animation for celebration */
+        animation: successPulse 2s ease-in-out infinite;
+        /* Gradient background for icon */
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-shadow: 0 4px 8px rgba(34, 197, 94, 0.3);
+      }
+
+      @keyframes successPulse {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      /* Add sparkle effects around the icon */
+      .success-icon::after {
+        content: "✨";
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 1.5rem;
+        animation: sparkle 2s ease-in-out infinite;
+      }
+
+      @keyframes sparkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: rotate(0deg) scale(0.5);
+        }
+        50% {
+          opacity: 1;
+          transform: rotate(180deg) scale(1);
+        }
+      }
+
+      /* ==========================================
+         *           TYPOGRAPHY STYLES
+         * ========================================== */
+
+      .success-title {
+        color: #2d3748;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        font-size: 2.5rem;
+        position: relative;
+        z-index: 1;
+        /* Gradient text effect */
+        background: linear-gradient(135deg, #22c55e, #16a34a);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: titleSlideIn 0.8s ease-out 0.3s both;
+      }
+
+      @keyframes titleSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .success-message {
+        color: #4a5568;
+        margin-bottom: 2.5rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+        animation: messageSlideIn 0.8s ease-out 0.5s both;
+      }
+
+      @keyframes messageSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ==========================================
+         *         CUSTOMER ID DISPLAY
+         * ========================================== */
+
+      .customer-id {
+        background: linear-gradient(
+          135deg,
+          rgba(102, 126, 234, 0.1),
+          rgba(34, 197, 94, 0.1)
+        );
+        border-radius: 16px;
+        padding: 1.5rem;
+        margin: 2rem 0;
+        border-left: 4px solid #22c55e;
+        border-right: 4px solid #667eea;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        position: relative;
+        z-index: 1;
+        animation: idCardSlideIn 0.8s ease-out 0.7s both;
+        backdrop-filter: blur(10px);
+      }
+
+      @keyframes idCardSlideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .customer-id strong {
+        color: #667eea;
+        font-size: 1.1rem;
+      }
+
+      /* ==========================================
+         *           BUTTON STYLES
+         * ========================================== */
+
+      .btn-primary {
+        background: linear-gradient(
+          135deg,
+          #667eea 0%,
+          #764ba2 50%,
+          #f093fb 100%
+        );
+        border: none;
+        padding: 16px 32px;
+        font-weight: 700;
+        font-size: 1rem;
+        letter-spacing: 0.5px;
+        border-radius: 50px;
+        margin: 0.5rem;
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4),
+          0 4px 10px rgba(102, 126, 234, 0.2);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(
+          135deg,
+          #5a6fd8 0%,
+          #6a4190 50%,
+          #e879f9 100%
+        );
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5),
+          0 6px 15px rgba(102, 126, 234, 0.3);
+      }
+
+      .btn-outline-primary {
+        border: 2px solid;
+        border-image: linear-gradient(135deg, #667eea, #22c55e) 1;
+        color: #667eea;
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        padding: 14px 30px;
+        font-weight: 700;
+        margin: 0.5rem;
+        border-radius: 50px;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+      }
+
+      .btn-outline-primary:hover {
+        background: linear-gradient(135deg, #667eea, #22c55e);
+        color: white;
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4),
+          0 6px 15px rgba(34, 197, 94, 0.3);
+      }
+
+      /* ==========================================
+         *         FEATURES LIST STYLES
+         * ========================================== */
+
+      .features-list {
+        text-align: left;
+        margin: 2.5rem 0;
+        position: relative;
+        z-index: 1;
+      }
+
+      .features-list li {
+        margin-bottom: 1rem;
+        color: #4a5568;
+        font-weight: 500;
+        padding: 12px 16px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease;
+        animation: listItemSlideIn 0.6s ease-out
+          calc(0.9s + var(--item-delay, 0s)) both;
+      }
+
+      .features-list li:nth-child(1) {
+        --item-delay: 0s;
+      }
+      .features-list li:nth-child(2) {
+        --item-delay: 0.1s;
+      }
+      .features-list li:nth-child(3) {
+        --item-delay: 0.2s;
+      }
+      .features-list li:nth-child(4) {
+        --item-delay: 0.3s;
+      }
+
+      @keyframes listItemSlideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .features-list li:hover {
+        background: rgba(255, 255, 255, 0.8);
+        transform: translateX(5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .features-list i {
+        margin-right: 12px;
+        width: 20px;
+        text-align: center;
+      }
+
+      /* ==========================================
+         *         RESPONSIVE ENHANCEMENTS
+         * ========================================== */
+
+      @media (max-width: 768px) {
+        .success-container {
+          margin: 1rem;
+          padding: 2.5rem 1.5rem;
+          border-radius: 16px;
+        }
+
+        .success-title {
+          font-size: 2rem;
+          margin-bottom: 1rem;
+        }
+
+        .success-icon {
+          font-size: 4rem;
+        }
+
+        .success-message {
+          font-size: 1.1rem;
+        }
+
+        .btn-primary,
+        .btn-outline-primary {
+          padding: 14px 24px;
+          font-size: 0.9rem;
+          margin: 0.3rem;
+        }
+      }
+
+      /* ==========================================
+         *         ACCESSIBILITY ENHANCEMENTS
+         * ========================================== */
+
+      /* Reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Focus indicators for keyboard navigation */
+      .btn-primary:focus-visible,
+      .btn-outline-primary:focus-visible {
+        outline: 3px solid #667eea;
+        outline-offset: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="success-container">
+            <!-- Success Icon -->
+            <div class="success-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+
+            <!-- Success Title -->
+            <h2 class="success-title">Registration Successful!</h2>
+
+            <!-- Success Message -->
+            <div
+              class="success-message"
+              th:if="${successMessage}"
+              th:text="${successMessage}"
+            >
+              Welcome to AeroParker!
+            </div>
+
+            <!-- Customer ID -->
+            <div class="customer-id" th:if="${customerId}">
+              <strong>Customer ID:</strong>
+              <span th:text="${customerId}"></span>
+            </div>
+
+            <!-- Welcome Message -->
+            <p class="text-muted">
+              Thank you for registering with AeroParker. Your account has been
+              successfully created and you're now part of our community!
+            </p>
+
+            <!-- What's Next -->
+            <div class="mt-4">
+              <h5 class="text-dark mb-3">What happens next?</h5>
+              <ul class="features-list">
+                <li>
+                  <i class="fas fa-envelope text-primary me-2"></i>You'll
+                  receive a welcome email shortly
+                </li>
+                <li>
+                  <i class="fas fa-user-check text-primary me-2"></i>Your
+                  account is now active and ready to use
+                </li>
+                <li>
+                  <i class="fas fa-shield-alt text-primary me-2"></i>Your data
+                  is securely stored and protected
+                </li>
+                <li>
+                  <i class="fas fa-headset text-primary me-2"></i>Our support
+                  team is available if you need help
+                </li>
+              </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="mt-4">
+              <a href="/registration" class="btn btn-outline-primary">
+                <i class="fas fa-plus me-2"></i>
+                Register Another Customer
+              </a>
+              <button class="btn btn-primary" onclick="window.print()">
+                <i class="fas fa-print me-2"></i>
+                Print Confirmation
+              </button>
+            </div>
+
+            <!-- Additional Information -->
+            <div class="mt-4 pt-3 border-top">
+              <small class="text-muted">
+                <i class="fas fa-info-circle me-1"></i>
+                If you have any questions, please contact our support team at
+                <a href="mailto:support@aeroparker.com"
+                  >support@aeroparker.com</a
+                >
+              </small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Add some animation to the success page
+      document.addEventListener("DOMContentLoaded", function () {
+        const successContainer = document.querySelector(".success-container");
+        successContainer.style.opacity = "0";
+        successContainer.style.transform = "translateY(20px)";
+
+        setTimeout(() => {
+          successContainer.style.transition = "all 0.6s ease-out";
+          successContainer.style.opacity = "1";
+          successContainer.style.transform = "translateY(0)";
+        }, 100);
+      });
+
+      // Auto-scroll to top when page loads
+      window.scrollTo(0, 0);
+    </script>
+  </body>
+</html>

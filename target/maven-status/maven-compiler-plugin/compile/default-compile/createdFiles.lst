@@ -1,0 +1,5 @@
+com/aeroparker/registration/RegistrationApplication.class
+com/aeroparker/registration/model/Customer.class
+com/aeroparker/registration/controller/RegistrationController.class
+com/aeroparker/registration/service/CustomerService.class
+com/aeroparker/registration/repository/CustomerRepository.class
