@@ -109,6 +109,3 @@ Things I want to add later:
 - Add more validation
 - Figure out how to deploy this somewhere
 
-## Notes
-
-This was a fun project to learn Spring Boot! Still have lots to learn about web development but this was a good start.
