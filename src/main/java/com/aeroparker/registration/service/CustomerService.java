@@ -12,7 +12,7 @@ import java.util.Optional;
  * Customer Service Layer
  * 
  * This service class contains the business logic for customer-related operations
- * in the AeroParker registration system. It acts as an intermediary between
+ * in the registration system. It acts as an intermediary between
  * the controller layer and the repository layer, implementing business rules
  * and ensuring data consistency.
  * 

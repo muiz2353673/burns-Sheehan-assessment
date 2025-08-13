@@ -1,111 +1,205 @@
-# My Registration App
+# Customer Registration System
 
-Hey! This is my registration app I made with Spring Boot. It's for people to sign up and register their info. I think it turned out pretty cool!
+A Spring Boot web application for customer registration with comprehensive validation and modern UI design.
 
-## What it does
+## Overview
 
-So basically this app lets people fill out a form with their name, email, address and stuff. Then it saves it to a database. Pretty neat right?
+This application provides a robust customer registration system built with Spring Boot, featuring real-time email validation, comprehensive form validation, and a responsive user interface. The system captures essential customer information and stores it securely in a database.
 
-The app uses:
+## Key Features
 
-- Java (I'm still learning this)
-- Spring Boot (this framework is confusing but powerful)
-- HTML for the web pages
-- A database to store stuff
+- **Customer Registration Form** with comprehensive validation
+- **Real-time Email Availability Checking** via AJAX
+- **Responsive Web Design** optimized for all devices
+- **Database Persistence** with H2 (development) and MySQL (production) support
+- **Input Validation** both client-side and server-side
+- **Success Confirmation** with user-friendly messaging
 
-## Features
+## Technology Stack
 
-- You can register with your info
-- It checks if your email is already used
-- Nice looking form (I tried to make it look good)
-- Saves everything to database
-- Shows a success page when done
+### Backend
 
-## Tech stuff
+- **Java 17** - Programming language
+- **Spring Boot 3.2.0** - Application framework
+- **Spring Data JPA** - Data persistence layer
+- **Spring MVC** - Web layer
+- **Bean Validation** - Input validation
 
-I used these technologies:
+### Frontend
 
-- **Java** - The programming language
-- **Spring Boot** - Makes Java web apps easier
-- **HTML/CSS** - For the website part
-- **H2 Database** - This is like a mini database that runs in memory
-- **Maven** - For building the project (still figuring this out)
+- **Thymeleaf** - Template engine
+- **Bootstrap 5** - CSS framework
+- **JavaScript** - Client-side functionality
 
-## Database
+### Database
 
-The database has a table called "customers" with these fields:
+- **H2 Database** - In-memory database for development
+- **MySQL** - Production database support
 
-- id (auto generated)
-- email_address
-- title (like Mr. or Mrs.)
-- first_name
-- last_name
-- address_line_1
-- address_line_2
-- city
-- postcode
-- phone_number
-- registered (timestamp when they signed up)
+### Build Tools
 
-I made sure email has to be unique so no duplicates!
+- **Maven** - Dependency management and build automation
 
-## How to run it
+## Database Schema
 
-You need Java installed on your computer (I think version 8 or higher works).
+The application uses a `customers` table with the following structure:
 
-1. Download the code:
+| Field            | Type         | Required | Description                        |
+| ---------------- | ------------ | -------- | ---------------------------------- |
+| `id`             | BIGINT       | Yes      | Auto-generated primary key         |
+| `email_address`  | VARCHAR(255) | Yes      | Unique email address               |
+| `title`          | VARCHAR(5)   | Yes      | Customer title (Mr, Mrs, Dr, etc.) |
+| `first_name`     | VARCHAR(50)  | Yes      | Customer's first name              |
+| `last_name`      | VARCHAR(50)  | Yes      | Customer's last name               |
+| `address_line_1` | VARCHAR(255) | Yes      | Primary address line               |
+| `address_line_2` | VARCHAR(255) | No       | Secondary address line             |
+| `city`           | VARCHAR(255) | No       | City                               |
+| `postcode`       | VARCHAR(10)  | Yes      | Postal code                        |
+| `phone_number`   | VARCHAR(20)  | No       | Phone number                       |
+| `registered`     | DATETIME     | Yes      | Registration timestamp             |
 
-   ```
-   git clone <the-repo-url>
+## Getting Started
+
+### Prerequisites
+
+- Java 17 or higher
+- Maven 3.6 or higher
+
+### Installation and Setup
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone <repository-url>
    cd burns-Sheehan-assessment
    ```
 
-2. Run it:
+2. **Build the application:**
 
+   ```bash
+   mvn clean install
    ```
+
+3. **Run the application:**
+
+   ```bash
    mvn spring-boot:run
    ```
 
-3. Open your browser and go to: http://localhost:8080
+4. **Access the application:**
+   - Main application: http://localhost:8080
+   - Registration form: http://localhost:8080/registration
+   - H2 Database Console: http://localhost:8080/h2-console
 
-That's it! The app should be running.
+### H2 Database Configuration (Development)
 
-## Viewing the database
+For development and testing, the application uses H2 in-memory database:
 
-If you want to see the data, go to http://localhost:8080/h2-console
+- **JDBC URL:** `jdbc:h2:mem:testdb`
+- **Username:** `sa`
+- **Password:** `password`
 
-Use these settings:
+## Application Architecture
 
-- JDBC URL: `jdbc:h2:mem:testdb`
-- User: `sa`
-- Password: `password`
+The application follows a layered architecture pattern:
 
-## File structure
+### Package Structure
 
-Here's what the important files do:
+```
+src/main/java/com/aeroparker/registration/
+├── RegistrationApplication.java     # Main application entry point
+├── controller/
+│   └── RegistrationController.java  # Web layer - handles HTTP requests
+├── model/
+│   └── Customer.java               # Entity layer - JPA entities
+├── repository/
+│   └── CustomerRepository.java     # Data access layer
+└── service/
+    └── CustomerService.java        # Business logic layer
+```
 
-- `RegistrationApplication.java` - This starts the app
-- `RegistrationController.java` - Handles the web requests
-- `Customer.java` - Defines what a customer looks like
-- `CustomerRepository.java` - Talks to the database
-- `CustomerService.java` - Has the business logic
-- `registration.html` - The form page
-- `success.html` - Shows when registration works
+### Key Components
 
-## Problems I ran into
+- **RegistrationController** - Handles web requests and form processing
+- **CustomerService** - Contains business logic and validation rules
+- **CustomerRepository** - Data access operations with Spring Data JPA
+- **Customer** - JPA entity representing customer data
 
-- Had trouble getting Maven to work at first
-- Took me a while to figure out the HTML templates
-- Database stuff is still confusing but I got it working
-- Still don't fully understand Spring Boot but it works!
+## API Endpoints
 
-## TODO
+| Method | Endpoint        | Description                        |
+| ------ | --------------- | ---------------------------------- |
+| GET    | `/`             | Redirects to registration form     |
+| GET    | `/registration` | Displays registration form         |
+| POST   | `/registration` | Processes form submission          |
+| GET    | `/success`      | Shows registration success page    |
+| GET    | `/check-email`  | AJAX endpoint for email validation |
 
-Things I want to add later:
+## Features
 
-- Better error messages
-- Maybe a login page?
-- Make it look nicer
-- Add more validation
-- Figure out how to deploy this somewhere
+### Form Validation
 
+- **Client-side validation** using HTML5 and JavaScript
+- **Server-side validation** using Bean Validation annotations
+- **Real-time email availability checking** via AJAX
+
+### Data Persistence
+
+- **Unique email constraint** prevents duplicate registrations
+- **Automatic timestamp generation** for registration time
+- **Case-insensitive email handling** for consistency
+
+### User Experience
+
+- **Responsive design** works on all device sizes
+- **Clear error messaging** guides users to correct input
+- **Success confirmation** provides positive feedback
+
+## Configuration
+
+### Development (Default)
+
+The application runs with H2 in-memory database by default. No additional configuration required.
+
+### Production (MySQL)
+
+To use MySQL in production, update `application.properties`:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/registration_db
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+spring.jpa.hibernate.ddl-auto=validate
+```
+
+## Testing
+
+Run the test suite:
+
+```bash
+mvn test
+```
+
+The application includes basic integration tests to verify Spring context loading and core functionality.
+
+## Technical Considerations
+
+### Security
+
+- Input validation prevents malicious data
+- SQL injection protection through JPA parameterized queries
+- XSS protection through proper output encoding
+
+### Performance
+
+- Database indexes on email and timestamp fields
+- Efficient existence queries for email validation
+- Optimized database queries through Spring Data JPA
+
+### Scalability
+
+- Stateless design supports horizontal scaling
+- Database connection pooling for concurrent users
+- Separation of concerns enables independent component scaling

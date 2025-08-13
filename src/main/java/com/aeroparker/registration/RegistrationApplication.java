@@ -4,41 +4,18 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * AeroParker Customer Registration Application
+ * Customer Registration Application
  * 
- * This is the main entry point for the AeroParker customer registration system.
- * It's a Spring Boot application that provides a web-based interface for
- * customer registration with the following features:
+ * Main entry point for the customer registration system. This Spring Boot application
+ * provides a web-based interface for customer registration with comprehensive validation,
+ * real-time email availability checking, and database persistence.
  * 
  * Key Features:
- * - Customer registration form with validation
- * - Real-time email availability checking
+ * - Customer registration form with server-side and client-side validation
+ * - Real-time email availability checking via AJAX
  * - Responsive web design with modern UI
- * - H2 in-memory database for development/testing
- * - MySQL support for production deployment
- * - RESTful endpoints for form processing and AJAX calls
- * 
- * Application Architecture:
- * - Controller Layer: Handles HTTP requests and responses
- * - Service Layer: Contains business logic and validation rules
- * - Repository Layer: Manages data access and persistence
- * - Model Layer: Defines entity structures and validation rules
- * - View Layer: Thymeleaf templates with Bootstrap styling
- * 
- * Technologies Used:
- * - Spring Boot 3.2.0 with Java 17
- * - Spring MVC for web layer
- * - Spring Data JPA for data persistence
- * - Bean Validation for input validation
- * - Thymeleaf for server-side template rendering
- * - Bootstrap 5 for responsive UI design
- * - H2/MySQL for database storage
- * 
- * Development Setup:
- * 1. Ensure Java 17+ is installed
- * 2. Run: mvn spring-boot:run
- * 3. Access application at: http://localhost:8080
- * 4. H2 console available at: http://localhost:8080/h2-console
+ * - Database persistence with H2 (development) and MySQL (production) support
+ * - RESTful endpoints for form processing and API calls
  * 
  * @author AeroParker Development Team
  * @version 1.0
@@ -48,9 +25,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class RegistrationApplication {
 
     /**
-     * Main method to start the Spring Boot application.
+     * Main method to bootstrap the Spring Boot application.
      * 
-     * This method bootstraps the entire Spring Boot application, which includes:
+     * This method initializes the Spring Boot application context, which includes:
      * - Auto-configuration of Spring components
      * - Embedded web server startup (Tomcat by default)
      * - Database connection initialization
@@ -59,7 +36,7 @@ public class RegistrationApplication {
      * 
      * The application will be accessible at http://localhost:8080 once started.
      * 
-     * @param args command line arguments (can be used for Spring Boot configuration)
+     * @param args command line arguments for application configuration
      */
     public static void main(String[] args) {
         SpringApplication.run(RegistrationApplication.class, args);

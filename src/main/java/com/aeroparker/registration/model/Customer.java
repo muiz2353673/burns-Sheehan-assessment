@@ -6,9 +6,9 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDateTime;
 
 /**
- * Talent Entity Class
+ * Customer Entity Class
  * 
- * This class represents a talent candidate in the Burns Sheehan recruitment system.
+ * This class represents a customer in the registration system.
  * It maps to the 'customers' table in the database and contains all the
  * necessary information required for customer registration.
  * 

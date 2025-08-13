@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * Talent Registration Controller
+ * Registration Controller
  * 
- * This controller handles all web requests related to talent registration for Burns Sheehan.
+ * This controller handles all web requests related to customer registration.
  * It provides endpoints for displaying the registration form, processing
  * form submissions, showing success pages, and AJAX email validation.
  * 
  * The controller follows the Model-View-Controller (MVC) pattern and uses
- * Thymeleaf templates for rendering HTML pages. It also includes proper
+ * Thymeleaf templates for rendering HTML pages. It includes proper
  * error handling and validation to ensure data integrity.
  * 
  * @author AeroParker Development Team
@@ -54,7 +54,7 @@ public class RegistrationController {
      * Display the customer registration form.
      * 
      * This endpoint serves the main registration page with an empty Customer
-     * object bound to the form. The Thymeleaf template will use this object
+     * object bound to the form. The Thymeleaf template uses this object
      * for form data binding and validation display.
      * 
      * @param model Spring MVC model for passing data to the view
@@ -79,7 +79,7 @@ public class RegistrationController {
      */
     @GetMapping("/success")
     public String showSuccessPage(Model model) {
-        return "success"; // Returns success.html template
+        return "success"; // Shows success.html
     }
 
     /**
