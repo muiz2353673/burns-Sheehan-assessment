@@ -1,351 +1,114 @@
-# Burns Sheehan Talent Registration System
+# My Registration App
 
-A modern Spring Boot web application for talent registration, built with professional recruitment industry standards. This system captures comprehensive talent information with robust validation and provides an exceptional user experience.
+Hey! This is my registration app I made with Spring Boot. It's for people to sign up and register their info. I think it turned out pretty cool!
 
-Based on the comprehensive design and recruitment expertise of [Burns Sheehan](https://www.burnssheehan.co.uk), a leading technology recruitment consultancy specializing in AI & Data, Software Engineering, Product & Design, Platform & Infrastructure, and C-Suite leadership roles.
+## What it does
 
-## 🎯 Overview
+So basically this app lets people fill out a form with their name, email, address and stuff. Then it saves it to a database. Pretty neat right?
 
-Burns Sheehan stands at the forefront of technology recruitment, building industry-leading teams across all sectors in tech. With deep expertise in hiring across data and leadership roles, they understand how to find the right talent that truly moves businesses forward.
+The app uses:
 
-This registration system embodies their commitment to:
+- Java (I'm still learning this)
+- Spring Boot (this framework is confusing but powerful)
+- HTML for the web pages
+- A database to store stuff
 
-- **Quality over Quantity**: Delivering high-quality candidates with impressive hit rates
-- **Partnership Approach**: Taking time to understand business needs and values
-- **Market Intelligence**: Leveraging deep market knowledge and insights
-- **Professional Excellence**: Maintaining top-notch NPS scores and client satisfaction
+## Features
 
-## ✨ Features
+- You can register with your info
+- It checks if your email is already used
+- Nice looking form (I tried to make it look good)
+- Saves everything to database
+- Shows a success page when done
 
-### Core Registration Capabilities
+## Tech stuff
 
-- **Comprehensive Talent Profiling** - Capture detailed candidate information
-- **Real-time Validation** - Instant feedback on email availability and form validation
-- **Professional UI/UX** - Burns Sheehan branded interface with modern design
-- **Mobile Responsive** - Optimized for all devices and screen sizes
-- **Database Persistence** - Secure storage with MySQL/H2 support
+I used these technologies:
 
-### Technical Excellence
+- **Java** - The programming language
+- **Spring Boot** - Makes Java web apps easier
+- **HTML/CSS** - For the website part
+- **H2 Database** - This is like a mini database that runs in memory
+- **Maven** - For building the project (still figuring this out)
 
-- **Spring Boot 3.2.0** with Java 17 (Latest LTS)
-- **Advanced Validation** - Both client-side and server-side validation
-- **Email Uniqueness** - Case-insensitive duplicate prevention
-- **Glass-morphism Design** - Modern UI with professional aesthetics
-- **Accessibility Compliant** - WCAG guidelines adherence
-- **Performance Optimized** - Fast load times and efficient processing
+## Database
 
-### Burns Sheehan Integration
+The database has a table called "customers" with these fields:
 
-- **Brand-Aligned Design** - Professional orange/black color scheme
-- **Industry Context** - Talent-focused language and terminology
-- **Recruitment Workflow** - Built for recruitment industry processes
-- **Professional Communication** - Industry-appropriate messaging
+- id (auto generated)
+- email_address
+- title (like Mr. or Mrs.)
+- first_name
+- last_name
+- address_line_1
+- address_line_2
+- city
+- postcode
+- phone_number
+- registered (timestamp when they signed up)
 
-## 🛠 Technology Stack
+I made sure email has to be unique so no duplicates!
 
-### Backend Technologies
+## How to run it
 
-- **Java 17** - Latest LTS version for enterprise stability
-- **Spring Boot 3.2.0** - Modern framework with latest features
-- **Spring Data JPA** - Simplified database operations
-- **Hibernate** - Advanced ORM capabilities
-- **Bean Validation** - Comprehensive input validation
+You need Java installed on your computer (I think version 8 or higher works).
 
-### Frontend Technologies
+1. Download the code:
 
-- **Thymeleaf** - Server-side template engine
-- **Bootstrap 5** - Modern CSS framework
-- **Custom CSS** - Burns Sheehan brand styling
-- **JavaScript ES6+** - Modern client-side functionality
-- **Font Awesome** - Professional iconography
-
-### Database Support
-
-- **H2 Database** - In-memory database for development
-- **MySQL 8.0+** - Production-ready relational database
-- **Connection Pooling** - HikariCP for optimal performance
-
-### Build & Deployment
-
-- **Maven 3.9+** - Reliable build automation
-- **Spring Boot Maven Plugin** - Streamlined packaging
-- **Docker Ready** - Container deployment support
-- **Cloud Compatible** - Ready for AWS, GCP, Azure
-
-## 📊 Database Schema
-
-The system captures comprehensive talent information:
-
-| Field            | Type         | Required | Description                            |
-| ---------------- | ------------ | -------- | -------------------------------------- |
-| `id`             | INT          | ✅       | Auto-generated unique identifier       |
-| `registered`     | DATETIME     | ✅       | Registration timestamp                 |
-| `email_address`  | VARCHAR(255) | ✅       | Unique email (case-insensitive)        |
-| `title`          | VARCHAR(5)   | ✅       | Professional title (Mr, Mrs, Dr, etc.) |
-| `first_name`     | VARCHAR(50)  | ✅       | Candidate's first name                 |
-| `last_name`      | VARCHAR(50)  | ✅       | Candidate's surname                    |
-| `address_line_1` | VARCHAR(255) | ✅       | Primary address                        |
-| `address_line_2` | VARCHAR(255) | ❌       | Additional address info                |
-| `city`           | VARCHAR(255) | ❌       | City/location                          |
-| `postcode`       | VARCHAR(10)  | ✅       | Postal code                            |
-| `phone_number`   | VARCHAR(20)  | ❌       | Contact number                         |
-
-### Performance Features
-
-- **Indexed Columns** - Email, registration date, and surname for fast queries
-- **Unique Constraints** - Email uniqueness enforced at database level
-- **Optimized Queries** - Efficient data retrieval patterns
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- **Java 17+** - Download from [OpenJDK](https://openjdk.org/)
-- **Maven 3.6+** - Build automation tool
-- **MySQL 8.0+** - Optional for production (H2 included for development)
-
-### Installation & Setup
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/muiz2353673/burns-Sheehan-assessment.git
+   ```
+   git clone <the-repo-url>
    cd burns-Sheehan-assessment
    ```
 
-2. **Build the Application**
+2. Run it:
 
-   ```bash
-   mvn clean install
    ```
-
-3. **Run the Application**
-
-   ```bash
    mvn spring-boot:run
    ```
 
-4. **Access the System**
-   - **Registration Portal**: http://localhost:8080/registration
-   - **Database Console**: http://localhost:8080/h2-console
-   - **Home**: http://localhost:8080/ (redirects to registration)
+3. Open your browser and go to: http://localhost:8080
 
-### H2 Database Console (Development)
+That's it! The app should be running.
 
-- **JDBC URL**: `jdbc:h2:mem:testdb`
-- **Username**: `sa`
-- **Password**: `password`
+## Viewing the database
 
-## ⚙️ Configuration
+If you want to see the data, go to http://localhost:8080/h2-console
 
-### Development Environment (Default)
+Use these settings:
 
-Uses H2 in-memory database with auto-configuration. No additional setup required.
+- JDBC URL: `jdbc:h2:mem:testdb`
+- User: `sa`
+- Password: `password`
 
-### Production Environment (MySQL)
+## File structure
 
-1. **Update `application.properties`**:
+Here's what the important files do:
 
-   ```properties
-   # MySQL Configuration
-   spring.datasource.url=jdbc:mysql://localhost:3306/burnssheehan_talent?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
-   spring.datasource.username=your_username
-   spring.datasource.password=your_password
-   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-   spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
-   spring.jpa.hibernate.ddl-auto=validate
-   ```
+- `RegistrationApplication.java` - This starts the app
+- `RegistrationController.java` - Handles the web requests
+- `Customer.java` - Defines what a customer looks like
+- `CustomerRepository.java` - Talks to the database
+- `CustomerService.java` - Has the business logic
+- `registration.html` - The form page
+- `success.html` - Shows when registration works
 
-2. **Initialize Database**:
-   ```bash
-   mysql -u root -p < database-setup.sql
-   ```
+## Problems I ran into
 
-## 🔗 API Endpoints
+- Had trouble getting Maven to work at first
+- Took me a while to figure out the HTML templates
+- Database stuff is still confusing but I got it working
+- Still don't fully understand Spring Boot but it works!
 
-| Method | Endpoint        | Description              | Response                              |
-| ------ | --------------- | ------------------------ | ------------------------------------- |
-| `GET`  | `/`             | Home redirect            | 302 → `/registration`                 |
-| `GET`  | `/registration` | Registration form        | HTML form page                        |
-| `POST` | `/registration` | Submit registration      | Success redirect or validation errors |
-| `GET`  | `/success`      | Success confirmation     | HTML success page                     |
-| `GET`  | `/check-email`  | Email availability check | "exists" or "available"               |
+## TODO
 
-### Response Formats
+Things I want to add later:
 
-- **HTML Pages**: Thymeleaf-rendered responsive pages
-- **AJAX Responses**: Plain text for email validation
-- **Error Handling**: User-friendly error messages with field-specific feedback
+- Better error messages
+- Maybe a login page?
+- Make it look nicer
+- Add more validation
+- Figure out how to deploy this somewhere
 
-## 🔒 Security & Validation
+## Notes
 
-### Input Validation
-
-- **Email Format**: RFC-compliant email validation
-- **Length Restrictions**: Prevents buffer overflow attacks
-- **Required Fields**: Ensures data completeness
-- **SQL Injection Prevention**: Parameterized queries with JPA
-
-### Data Protection
-
-- **Email Normalization**: Stored in lowercase for consistency
-- **Unique Constraints**: Database-level duplicate prevention
-- **Error Handling**: No sensitive information disclosure
-- **Secure Logging**: No sensitive data in logs
-
-### Recommended Enhancements
-
-- **HTTPS/TLS**: SSL certificate configuration
-- **Rate Limiting**: Prevent spam registrations
-- **CSRF Protection**: Spring Security integration
-- **Input Sanitization**: XSS prevention
-
-## 📁 Project Structure
-
-```
-src/
-├── main/
-│   ├── java/com/aeroparker/registration/
-│   │   ├── RegistrationApplication.java           # Main application
-│   │   ├── controller/
-│   │   │   └── RegistrationController.java        # Web endpoints
-│   │   ├── model/
-│   │   │   └── Customer.java                      # Entity definition
-│   │   ├── repository/
-│   │   │   └── CustomerRepository.java            # Data access
-│   │   └── service/
-│   │       └── CustomerService.java               # Business logic
-│   └── resources/
-│       ├── application.properties                 # Configuration
-│       └── templates/
-│           ├── registration.html                  # Registration form
-│           └── success.html                       # Success page
-├── test/
-│   └── java/com/aeroparker/registration/
-│       └── RegistrationApplicationTests.java      # Application tests
-├── database-setup.sql                             # MySQL schema
-├── PROJECT_DOCUMENTATION.txt                      # Detailed documentation
-└── README.md                                      # This file
-```
-
-## 🧪 Testing
-
-### Manual Testing
-
-1. **Start Application**: `mvn spring-boot:run`
-2. **Open Browser**: Navigate to http://localhost:8080/registration
-3. **Test Registration**: Fill form with valid data
-4. **Verify Success**: Check success page displays
-5. **Database Verification**: Use H2 console to verify data
-6. **Test Validation**: Try duplicate email, empty fields
-
-### Automated Testing
-
-```bash
-# Run all tests
-mvn test
-
-# Run with coverage
-mvn test jacoco:report
-```
-
-### Test Scenarios
-
-- ✅ Valid registration data
-- ✅ Email format validation
-- ✅ Required field validation
-- ✅ Duplicate email prevention
-- ✅ Form submission and redirect
-- ✅ Database persistence
-
-## 🚢 Deployment
-
-### Local JAR Deployment
-
-```bash
-# Build executable JAR
-mvn clean package
-
-# Run standalone
-java -jar target/registration-1.0.0.jar
-```
-
-### Docker Deployment (Optional)
-
-```dockerfile
-FROM openjdk:17-jre-slim
-COPY target/registration-1.0.0.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app.jar"]
-```
-
-```bash
-# Build and run
-docker build -t burns-sheehan-registration .
-docker run -p 8080:8080 burns-sheehan-registration
-```
-
-### Cloud Deployment
-
-- **AWS Elastic Beanstalk**: Upload JAR file
-- **Google Cloud Platform**: App Engine or Cloud Run
-- **Microsoft Azure**: App Service
-- **Heroku**: Git-based deployment with Procfile
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Port Already in Use**
-
-```bash
-# Find process using port 8080
-lsof -ti:8080 | xargs kill -9
-
-# Or change port
-echo "server.port=8081" >> src/main/resources/application.properties
-```
-
-**Database Connection Issues**
-
-- Verify MySQL service: `sudo service mysql status`
-- Check credentials in `application.properties`
-- Ensure database exists: `CREATE DATABASE burnssheehan_talent;`
-
-**Memory Issues**
-
-```bash
-# Increase JVM heap size
-export MAVEN_OPTS="-Xmx1024m"
-mvn spring-boot:run
-```
-
-**Build Failures**
-
-```bash
-# Clean and rebuild
-mvn clean install -DskipTests
-
-# Update dependencies
-mvn versions:use-latest-versions
-```
-
-### Debug Mode
-
-Enable detailed logging:
-
-```properties
-logging.level.com.aeroparker=DEBUG
-logging.level.org.springframework.web=DEBUG
-logging.level.org.springframework.security=DEBUG
-```
-
-## 📈 Performance Monitoring
-
-### Key Metrics
-
-- **Page Load Time**: < 2 seconds
-- **Form Submission**: < 500ms
-- **Email Validation**: < 300ms
-- **Database Queries**: < 100ms
-
+This was a fun project to learn Spring Boot! Still have lots to learn about web development but this was a good start.
