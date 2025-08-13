@@ -109,8 +109,8 @@ The system captures comprehensive talent information:
 1. **Clone the Repository**
 
    ```bash
-   git clone <repository-url>
-   cd aeroparker-registration
+   git clone https://github.com/muiz2353673/burns-Sheehan-assessment.git
+   cd burns-Sheehan-assessment
    ```
 
 2. **Build the Application**
