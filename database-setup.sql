@@ -1,13 +1,13 @@
 -- ==========================================
---     AEROPARKER CUSTOMER REGISTRATION
+--     BURNS SHEEHAN TALENT REGISTRATION
 --           DATABASE SETUP SCRIPT
 -- ==========================================
 --
 -- This SQL script sets up the complete database structure for the
--- AeroParker customer registration system. It includes:
+-- Burns Sheehan talent registration system. It includes:
 --
 -- - Database creation with proper character encoding
--- - Customer table with all required fields and constraints
+-- - Talent table with all required fields and constraints
 -- - Performance indexes for optimized queries
 -- - Sample test data for development and testing
 -- - Verification queries to confirm setup
@@ -16,7 +16,7 @@
 -- Character Set: UTF8MB4 (full Unicode support)
 -- Collation: utf8mb4_unicode_ci (case-insensitive Unicode)
 --
--- Author: AeroParker Development Team
+-- Author: Burns Sheehan Development Team
 -- Version: 1.0
 -- Last Updated: 2024-01-01
 --
@@ -33,12 +33,12 @@
 -- Create the main application database
 -- Uses UTF8MB4 for full Unicode support (including emojis)
 -- Case-insensitive collation for user-friendly email comparisons
-CREATE DATABASE IF NOT EXISTS aeroparker
+CREATE DATABASE IF NOT EXISTS burnssheehan_talent
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 
 -- Switch to the newly created database
-USE aeroparker;
+USE burnssheehan_talent;
 
 -- ==========================================
 --         CUSTOMER TABLE CREATION
@@ -242,7 +242,7 @@ SELECT
     INDEX_LENGTH,
     (DATA_LENGTH + INDEX_LENGTH) AS total_size
 FROM information_schema.TABLES 
-WHERE TABLE_SCHEMA = 'aeroparker' 
+WHERE TABLE_SCHEMA = 'burnssheehan_talent' 
   AND TABLE_NAME = 'customers';
 
 -- Display index information for performance verification
@@ -253,4 +253,4 @@ SHOW INDEX FROM customers;
 -- ==========================================
 
 -- Success message
-SELECT 'AeroParker customer registration database setup completed successfully!' AS Status;
+SELECT 'Burns Sheehan talent registration database setup completed successfully!' AS Status;

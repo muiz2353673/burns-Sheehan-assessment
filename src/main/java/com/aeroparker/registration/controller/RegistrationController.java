@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * Registration Controller
+ * Talent Registration Controller
  * 
- * This controller handles all web requests related to customer registration.
+ * This controller handles all web requests related to talent registration for Burns Sheehan.
  * It provides endpoints for displaying the registration form, processing
  * form submissions, showing success pages, and AJAX email validation.
  * 

@@ -22,343 +22,369 @@
     Last Updated: 2024-01-01
 -->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <!-- Basic meta tags for responsive design and character encoding -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Customer Registration - AeroParker</title>
-    
+
     <!-- External CSS libraries -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
     <style>
-        /* ==========================================
+      /* ==========================================
          *           GLOBAL STYLES
          * ========================================== */
-        
-        body {
-            /* Modern gradient background with enhanced colors */
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* Add subtle animation to background */
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
 
-        /* Animated background gradient */
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+      body {
+        /* Burns Sheehan inspired professional background */
+        background: linear-gradient(
+          135deg,
+          #1a1a1a 0%,
+          #2d2d2d 50%,
+          #404040 100%
+        );
+        min-height: 100vh;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        /* Add subtle animation to background */
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
 
-        /* ==========================================
+      /* Animated background gradient */
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      /* ==========================================
          *         MAIN CONTAINER STYLES
          * ========================================== */
-        
-        .registration-container {
-            /* Enhanced glass-morphism effect */
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.1),
-                0 10px 20px rgba(0, 0, 0, 0.05),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
-            padding: 3rem;
-            margin: 2rem auto;
-            position: relative;
-            overflow: hidden;
-            /* Smooth entrance animation */
-            animation: slideInUp 0.8s ease-out;
-        }
 
-        /* Container entrance animation */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+      .registration-container {
+        /* Enhanced glass-morphism effect */
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+          0 10px 20px rgba(0, 0, 0, 0.05),
+          inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        padding: 3rem;
+        margin: 2rem auto;
+        position: relative;
+        overflow: hidden;
+        /* Smooth entrance animation */
+        animation: slideInUp 0.8s ease-out;
+      }
 
-        /* Decorative elements */
-        .registration-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-            pointer-events: none;
+      /* Container entrance animation */
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
         }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
         }
+      }
 
-        /* ==========================================
+      /* Decorative elements */
+      .registration-container::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(102, 126, 234, 0.1) 0%,
+          transparent 70%
+        );
+        animation: rotate 20s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ==========================================
          *           TYPOGRAPHY STYLES
          * ========================================== */
-        
-        .form-title {
-            color: #2d3748;
-            text-align: center;
-            margin-bottom: 2.5rem;
-            font-weight: 700;
-            font-size: 2.2rem;
-            position: relative;
-            z-index: 1;
-            /* Text gradient effect */
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
 
-        .form-title i {
-            margin-right: 0.5rem;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+      .form-title {
+        color: #2d3748;
+        text-align: center;
+        margin-bottom: 2.5rem;
+        font-weight: 700;
+        font-size: 2.2rem;
+        position: relative;
+        z-index: 1;
+        /* Burns Sheehan brand colors */
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
 
-        /* ==========================================
+      .form-title i {
+        margin-right: 0.5rem;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* ==========================================
          *           FORM FIELD STYLES
          * ========================================== */
-        
-        .form-label {
-            font-weight: 600;
-            color: #4a5568;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            letter-spacing: 0.025em;
+
+      .form-label {
+        font-weight: 600;
+        color: #4a5568;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        letter-spacing: 0.025em;
+      }
+
+      .form-control,
+      .form-select {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 14px 16px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        position: relative;
+      }
+
+      .form-control:focus,
+      .form-select:focus {
+        border-color: #ff6b35;
+        box-shadow: 0 0 0 0.25rem rgba(255, 107, 53, 0.15),
+          0 4px 12px rgba(255, 107, 53, 0.1);
+        background: rgba(255, 255, 255, 1);
+        transform: translateY(-1px);
+      }
+
+      /* Enhanced input hover effects */
+      .form-control:hover:not(:focus),
+      .form-select:hover:not(:focus) {
+        border-color: #a0aec0;
+        background: rgba(255, 255, 255, 0.95);
+      }
+
+      /* Floating label effect simulation */
+      .mb-3 {
+        position: relative;
+        margin-bottom: 1.5rem;
+      }
+
+      /* ==========================================
+         *           BUTTON STYLES
+         * ========================================== */
+
+      .btn-primary {
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        border: none;
+        padding: 16px 40px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.5px;
+        border-radius: 8px;
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4),
+          0 4px 10px rgba(255, 107, 53, 0.2);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+      }
+
+      .btn-primary::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover {
+        background: linear-gradient(135deg, #e55a2b 0%, #e8830a 100%);
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 35px rgba(255, 107, 53, 0.5),
+          0 6px 15px rgba(255, 107, 53, 0.3);
+      }
+
+      .btn-primary:active {
+        transform: translateY(-1px) scale(1.01);
+      }
+
+      /* ==========================================
+         *         VALIDATION STYLES
+         * ========================================== */
+
+      .alert {
+        border-radius: 12px;
+        border: none;
+        padding: 16px 20px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .email-status {
+        font-size: 0.875rem;
+        margin-top: 0.5rem;
+        font-weight: 600;
+        padding: 8px 12px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .email-available {
+        color: #22c55e;
+        background: rgba(34, 197, 94, 0.1);
+        border: 1px solid rgba(34, 197, 94, 0.2);
+      }
+
+      .email-exists {
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.2);
+      }
+
+      .required-field::after {
+        content: " *";
+        color: #ef4444;
+        font-weight: bold;
+      }
+
+      .invalid-feedback {
+        color: #ef4444;
+        font-weight: 600;
+        margin-top: 0.5rem;
+        padding: 8px 12px;
+        background: rgba(239, 68, 68, 0.1);
+        border-radius: 8px;
+        border: 1px solid rgba(239, 68, 68, 0.2);
+      }
+
+      .is-invalid {
+        border-color: #ef4444 !important;
+        box-shadow: 0 0 0 0.25rem rgba(239, 68, 68, 0.15) !important;
+      }
+
+      /* ==========================================
+         *         RESPONSIVE ENHANCEMENTS
+         * ========================================== */
+
+      @media (max-width: 768px) {
+        .registration-container {
+          margin: 1rem;
+          padding: 2rem 1.5rem;
+          border-radius: 16px;
+        }
+
+        .form-title {
+          font-size: 1.8rem;
+          margin-bottom: 2rem;
         }
 
         .form-control,
         .form-select {
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 14px 16px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            position: relative;
+          padding: 12px 14px;
+        }
+
+        .btn-primary {
+          padding: 14px 30px;
+          font-size: 1rem;
+        }
+      }
+
+      /* ==========================================
+         *         ACCESSIBILITY ENHANCEMENTS
+         * ========================================== */
+
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        .form-control,
+        .form-select {
+          border-color: #000;
         }
 
         .form-control:focus,
         .form-select:focus {
-            border-color: #667eea;
-            box-shadow: 
-                0 0 0 0.25rem rgba(102, 126, 234, 0.15),
-                0 4px 12px rgba(102, 126, 234, 0.1);
-            background: rgba(255, 255, 255, 1);
-            transform: translateY(-1px);
+          border-color: #000;
+          box-shadow: 0 0 0 3px #000;
         }
+      }
 
-        /* Enhanced input hover effects */
-        .form-control:hover:not(:focus),
-        .form-select:hover:not(:focus) {
-            border-color: #a0aec0;
-            background: rgba(255, 255, 255, 0.95);
+      /* Reduced motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
         }
+      }
 
-        /* Floating label effect simulation */
-        .mb-3 {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        /* ==========================================
-         *           BUTTON STYLES
-         * ========================================== */
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            border: none;
-            padding: 16px 40px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            border-radius: 50px;
-            box-shadow: 
-                0 8px 25px rgba(102, 126, 234, 0.4),
-                0 4px 10px rgba(102, 126, 234, 0.2);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            text-transform: uppercase;
-        }
-
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 50%, #e879f9 100%);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 
-                0 12px 35px rgba(102, 126, 234, 0.5),
-                0 6px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn-primary:active {
-            transform: translateY(-1px) scale(1.01);
-        }
-
-        /* ==========================================
-         *         VALIDATION STYLES
-         * ========================================== */
-        
-        .alert {
-            border-radius: 12px;
-            border: none;
-            padding: 16px 20px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .email-status {
-            font-size: 0.875rem;
-            margin-top: 0.5rem;
-            font-weight: 600;
-            padding: 8px 12px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .email-available {
-            color: #22c55e;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-        }
-
-        .email-exists {
-            color: #ef4444;
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .required-field::after {
-            content: " *";
-            color: #ef4444;
-            font-weight: bold;
-        }
-
-        .invalid-feedback {
-            color: #ef4444;
-            font-weight: 600;
-            margin-top: 0.5rem;
-            padding: 8px 12px;
-            background: rgba(239, 68, 68, 0.1);
-            border-radius: 8px;
-            border: 1px solid rgba(239, 68, 68, 0.2);
-        }
-
-        .is-invalid {
-            border-color: #ef4444 !important;
-            box-shadow: 0 0 0 0.25rem rgba(239, 68, 68, 0.15) !important;
-        }
-
-        /* ==========================================
-         *         RESPONSIVE ENHANCEMENTS
-         * ========================================== */
-        
-        @media (max-width: 768px) {
-            .registration-container {
-                margin: 1rem;
-                padding: 2rem 1.5rem;
-                border-radius: 16px;
-            }
-            
-            .form-title {
-                font-size: 1.8rem;
-                margin-bottom: 2rem;
-            }
-            
-            .form-control,
-            .form-select {
-                padding: 12px 14px;
-            }
-            
-            .btn-primary {
-                padding: 14px 30px;
-                font-size: 1rem;
-            }
-        }
-
-        /* ==========================================
-         *         ACCESSIBILITY ENHANCEMENTS
-         * ========================================== */
-        
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            .form-control,
-            .form-select {
-                border-color: #000;
-            }
-            
-            .form-control:focus,
-            .form-select:focus {
-                border-color: #000;
-                box-shadow: 0 0 0 3px #000;
-            }
-        }
-
-        /* Reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Focus indicators for keyboard navigation */
-        .form-control:focus-visible,
-        .form-select:focus-visible,
-        .btn-primary:focus-visible {
-            outline: 3px solid #667eea;
-            outline-offset: 2px;
-        }
+      /* Focus indicators for keyboard navigation */
+      .form-control:focus-visible,
+      .form-select:focus-visible,
+      .btn-primary:focus-visible {
+        outline: 3px solid #ff6b35;
+        outline-offset: 2px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Main container with Bootstrap grid system -->
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-                <!-- Main registration container with enhanced styling -->
-                <div class="registration-container">
-                    <!-- Form header with icon and title -->
-                    <h2 class="form-title">
-                        <i class="fas fa-user-plus me-2"></i>
-                        Customer Registration
-                    </h2>
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <!-- Main registration container with enhanced styling -->
+          <div class="registration-container">
+            <!-- Form header with icon and title -->
+            <h2 class="form-title">
+              <i class="fas fa-users me-2"></i>
+              Talent Registration
+            </h2>
 
-                    <!-- 
+            <!-- 
                         Main registration form
                         - Uses Thymeleaf for server-side form binding
                         - th:object binds the form to the Customer model
@@ -366,17 +392,21 @@
                         - Client-side validation with JavaScript
                         - Server-side validation with Bean Validation
                     -->
-                    <form th:action="@{/registration}" th:object="${customer}" method="post" id="registrationForm">
-                        
-                        <!-- 
+            <form
+              th:action="@{/registration}"
+              th:object="${customer}"
+              method="post"
+              id="registrationForm"
+            >
+              <!-- 
                             Form validation strategy:
                             - Field-specific errors are displayed below each input
                             - Thymeleaf #fields utility provides error handling
                             - Bootstrap validation classes for visual feedback
                             - Real-time AJAX validation for email availability
                         -->
-                        
-                        <!-- 
+
+              <!-- 
                             Email Address Field
                             - Primary identifier for customer accounts
                             - Real-time AJAX validation for availability checking
@@ -384,182 +414,243 @@
                             - Stored in lowercase for consistency
                             - Unique constraint enforced at database level
                         -->
-                        <div class="mb-3">
-                            <label for="emailAddress" class="form-label required-field">Email Address</label>
-                            <input type="email" 
-                                   class="form-control" 
-                                   id="emailAddress" 
-                                   th:field="*{emailAddress}"
-                                   th:classappend="${#fields.hasErrors('emailAddress')} ? 'is-invalid' : ''"
-                                   placeholder="Enter your email address"
-                                   required>
-                            <!-- Server-side validation error display -->
-                            <div th:if="${#fields.hasErrors('emailAddress')}" class="invalid-feedback">
-                                <span th:errors="*{emailAddress}"></span>
-                            </div>
-                            <!-- Real-time email availability status (populated by JavaScript) -->
-                            <div id="emailStatus" class="email-status"></div>
-                        </div>
+              <div class="mb-3">
+                <label for="emailAddress" class="form-label required-field"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="emailAddress"
+                  th:field="*{emailAddress}"
+                  th:classappend="${#fields.hasErrors('emailAddress')} ? 'is-invalid' : ''"
+                  placeholder="Enter your email address"
+                  required
+                />
+                <!-- Server-side validation error display -->
+                <div
+                  th:if="${#fields.hasErrors('emailAddress')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{emailAddress}"></span>
+                </div>
+                <!-- Real-time email availability status (populated by JavaScript) -->
+                <div id="emailStatus" class="email-status"></div>
+              </div>
 
-                        <!-- 
+              <!-- 
                             Title Selection Field
                             - Customer courtesy title (Mr, Mrs, Miss, Ms, Dr, Prof)
                             - Required field with predefined options
                             - Server-side validation: @NotBlank, @Size(max=5)
                             - Helps with personalized communication
                         -->
-                        <div class="mb-3">
-                            <label for="title" class="form-label required-field">Title</label>
-                            <select class="form-select" 
-                                    id="title" 
-                                    th:field="*{title}"
-                                    th:classappend="${#fields.hasErrors('title')} ? 'is-invalid' : ''"
-                                    required>
-                                <option value="">Select title</option>
-                                <option value="Mr">Mr</option>
-                                <option value="Mrs">Mrs</option>
-                                <option value="Miss">Miss</option>
-                                <option value="Ms">Ms</option>
-                                <option value="Dr">Dr</option>
-                                <option value="Prof">Prof</option>
-                            </select>
-                            <!-- Server-side validation error display -->
-                            <div th:if="${#fields.hasErrors('title')}" class="invalid-feedback">
-                                <span th:errors="*{title}"></span>
-                            </div>
-                        </div>
+              <div class="mb-3">
+                <label for="title" class="form-label required-field"
+                  >Title</label
+                >
+                <select
+                  class="form-select"
+                  id="title"
+                  th:field="*{title}"
+                  th:classappend="${#fields.hasErrors('title')} ? 'is-invalid' : ''"
+                  required
+                >
+                  <option value="">Select title</option>
+                  <option value="Mr">Mr</option>
+                  <option value="Mrs">Mrs</option>
+                  <option value="Miss">Miss</option>
+                  <option value="Ms">Ms</option>
+                  <option value="Dr">Dr</option>
+                  <option value="Prof">Prof</option>
+                </select>
+                <!-- Server-side validation error display -->
+                <div
+                  th:if="${#fields.hasErrors('title')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{title}"></span>
+                </div>
+              </div>
 
-                        <!-- First Name -->
-                        <div class="mb-3">
-                            <label for="firstName" class="form-label required-field">First Name</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="firstName" 
-                                   th:field="*{firstName}"
-                                   th:classappend="${#fields.hasErrors('firstName')} ? 'is-invalid' : ''"
-                                   placeholder="Enter your first name"
-                                   maxlength="50"
-                                   required>
-                            <div th:if="${#fields.hasErrors('firstName')}" class="invalid-feedback">
-                                <span th:errors="*{firstName}"></span>
-                            </div>
-                        </div>
+              <!-- First Name -->
+              <div class="mb-3">
+                <label for="firstName" class="form-label required-field"
+                  >First Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  th:field="*{firstName}"
+                  th:classappend="${#fields.hasErrors('firstName')} ? 'is-invalid' : ''"
+                  placeholder="Enter your first name"
+                  maxlength="50"
+                  required
+                />
+                <div
+                  th:if="${#fields.hasErrors('firstName')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{firstName}"></span>
+                </div>
+              </div>
 
-                        <!-- Last Name -->
-                        <div class="mb-3">
-                            <label for="lastName" class="form-label required-field">Last Name</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="lastName" 
-                                   th:field="*{lastName}"
-                                   th:classappend="${#fields.hasErrors('lastName')} ? 'is-invalid' : ''"
-                                   placeholder="Enter your last name"
-                                   maxlength="50"
-                                   required>
-                            <div th:if="${#fields.hasErrors('lastName')}" class="invalid-feedback">
-                                <span th:errors="*{lastName}"></span>
-                            </div>
-                        </div>
+              <!-- Last Name -->
+              <div class="mb-3">
+                <label for="lastName" class="form-label required-field"
+                  >Last Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  th:field="*{lastName}"
+                  th:classappend="${#fields.hasErrors('lastName')} ? 'is-invalid' : ''"
+                  placeholder="Enter your last name"
+                  maxlength="50"
+                  required
+                />
+                <div
+                  th:if="${#fields.hasErrors('lastName')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{lastName}"></span>
+                </div>
+              </div>
 
-                        <!-- Address Line 1 -->
-                        <div class="mb-3">
-                            <label for="addressLine1" class="form-label required-field">Address Line 1</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="addressLine1" 
-                                   th:field="*{addressLine1}"
-                                   th:classappend="${#fields.hasErrors('addressLine1')} ? 'is-invalid' : ''"
-                                   placeholder="Enter your address"
-                                   maxlength="255"
-                                   required>
-                            <div th:if="${#fields.hasErrors('addressLine1')}" class="invalid-feedback">
-                                <span th:errors="*{addressLine1}"></span>
-                            </div>
-                        </div>
+              <!-- Address Line 1 -->
+              <div class="mb-3">
+                <label for="addressLine1" class="form-label required-field"
+                  >Address Line 1</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="addressLine1"
+                  th:field="*{addressLine1}"
+                  th:classappend="${#fields.hasErrors('addressLine1')} ? 'is-invalid' : ''"
+                  placeholder="Enter your address"
+                  maxlength="255"
+                  required
+                />
+                <div
+                  th:if="${#fields.hasErrors('addressLine1')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{addressLine1}"></span>
+                </div>
+              </div>
 
-                        <!-- Address Line 2 -->
-                        <div class="mb-3">
-                            <label for="addressLine2" class="form-label">Address Line 2 (Optional)</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="addressLine2" 
-                                   th:field="*{addressLine2}"
-                                   th:classappend="${#fields.hasErrors('addressLine2')} ? 'is-invalid' : ''"
-                                   placeholder="Apartment, suite, etc. (optional)"
-                                   maxlength="255">
-                            <div th:if="${#fields.hasErrors('addressLine2')}" class="invalid-feedback">
-                                <span th:errors="*{addressLine2}"></span>
-                            </div>
-                        </div>
+              <!-- Address Line 2 -->
+              <div class="mb-3">
+                <label for="addressLine2" class="form-label"
+                  >Address Line 2 (Optional)</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="addressLine2"
+                  th:field="*{addressLine2}"
+                  th:classappend="${#fields.hasErrors('addressLine2')} ? 'is-invalid' : ''"
+                  placeholder="Apartment, suite, etc. (optional)"
+                  maxlength="255"
+                />
+                <div
+                  th:if="${#fields.hasErrors('addressLine2')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{addressLine2}"></span>
+                </div>
+              </div>
 
-                        <!-- City -->
-                        <div class="mb-3">
-                            <label for="city" class="form-label">City (Optional)</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="city" 
-                                   th:field="*{city}"
-                                   th:classappend="${#fields.hasErrors('city')} ? 'is-invalid' : ''"
-                                   placeholder="Enter your city"
-                                   maxlength="255">
-                            <div th:if="${#fields.hasErrors('city')}" class="invalid-feedback">
-                                <span th:errors="*{city}"></span>
-                            </div>
-                        </div>
+              <!-- City -->
+              <div class="mb-3">
+                <label for="city" class="form-label">City (Optional)</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  th:field="*{city}"
+                  th:classappend="${#fields.hasErrors('city')} ? 'is-invalid' : ''"
+                  placeholder="Enter your city"
+                  maxlength="255"
+                />
+                <div
+                  th:if="${#fields.hasErrors('city')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{city}"></span>
+                </div>
+              </div>
 
-                        <!-- Postcode -->
-                        <div class="mb-3">
-                            <label for="postcode" class="form-label required-field">Postcode</label>
-                            <input type="text" 
-                                   class="form-control" 
-                                   id="postcode" 
-                                   th:field="*{postcode}"
-                                   th:classappend="${#fields.hasErrors('postcode')} ? 'is-invalid' : ''"
-                                   placeholder="Enter your postcode"
-                                   maxlength="10"
-                                   required>
-                            <div th:if="${#fields.hasErrors('postcode')}" class="invalid-feedback">
-                                <span th:errors="*{postcode}"></span>
-                            </div>
-                        </div>
+              <!-- Postcode -->
+              <div class="mb-3">
+                <label for="postcode" class="form-label required-field"
+                  >Postcode</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="postcode"
+                  th:field="*{postcode}"
+                  th:classappend="${#fields.hasErrors('postcode')} ? 'is-invalid' : ''"
+                  placeholder="Enter your postcode"
+                  maxlength="10"
+                  required
+                />
+                <div
+                  th:if="${#fields.hasErrors('postcode')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{postcode}"></span>
+                </div>
+              </div>
 
-                        <!-- Phone Number -->
-                        <div class="mb-4">
-                            <label for="phoneNumber" class="form-label">Phone Number (Optional)</label>
-                            <input type="tel" 
-                                   class="form-control" 
-                                   id="phoneNumber" 
-                                   th:field="*{phoneNumber}"
-                                   th:classappend="${#fields.hasErrors('phoneNumber')} ? 'is-invalid' : ''"
-                                   placeholder="Enter your phone number"
-                                   maxlength="20">
-                            <div th:if="${#fields.hasErrors('phoneNumber')}" class="invalid-feedback">
-                                <span th:errors="*{phoneNumber}"></span>
-                            </div>
-                        </div>
+              <!-- Phone Number -->
+              <div class="mb-4">
+                <label for="phoneNumber" class="form-label"
+                  >Phone Number (Optional)</label
+                >
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="phoneNumber"
+                  th:field="*{phoneNumber}"
+                  th:classappend="${#fields.hasErrors('phoneNumber')} ? 'is-invalid' : ''"
+                  placeholder="Enter your phone number"
+                  maxlength="20"
+                />
+                <div
+                  th:if="${#fields.hasErrors('phoneNumber')}"
+                  class="invalid-feedback"
+                >
+                  <span th:errors="*{phoneNumber}"></span>
+                </div>
+              </div>
 
-                        <!-- 
+              <!-- 
                             Form Submission Button
                             - Primary action button with enhanced styling
                             - Grid layout ensures full-width button
                             - Icon provides visual context for action
                             - Form validation runs before submission
                         -->
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fas fa-paper-plane me-2"></i>
-                                Register
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+              <div class="d-grid">
+                <button type="submit" class="btn btn-primary btn-lg">
+                  <i class="fas fa-paper-plane me-2"></i>
+                  Register
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Bootstrap JavaScript for interactive components -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- 
         Custom JavaScript for form enhancement
         - Real-time email validation with AJAX
@@ -568,97 +659,100 @@
         - Progressive enhancement approach
     -->
     <script>
-        /* ==========================================
-         *        EMAIL VALIDATION SYSTEM
-         * ========================================== */
-        
-        // Real-time email validation with debouncing
-        let emailTimeout;
-        const emailInput = document.getElementById('emailAddress');
-        const emailStatus = document.getElementById('emailStatus');
+      /* ==========================================
+       *        EMAIL VALIDATION SYSTEM
+       * ========================================== */
 
-        // Event listener for email input with debouncing (500ms delay)
-        emailInput.addEventListener('input', function() {
-            clearTimeout(emailTimeout);
-            const email = this.value.trim();
-            
-            // Only check email availability if input is valid email format
-            if (email && isValidEmail(email)) {
-                emailTimeout = setTimeout(() => {
-                    checkEmailAvailability(email);
-                }, 500); // 500ms debounce to prevent excessive API calls
+      // Real-time email validation with debouncing
+      let emailTimeout;
+      const emailInput = document.getElementById("emailAddress");
+      const emailStatus = document.getElementById("emailStatus");
+
+      // Event listener for email input with debouncing (500ms delay)
+      emailInput.addEventListener("input", function () {
+        clearTimeout(emailTimeout);
+        const email = this.value.trim();
+
+        // Only check email availability if input is valid email format
+        if (email && isValidEmail(email)) {
+          emailTimeout = setTimeout(() => {
+            checkEmailAvailability(email);
+          }, 500); // 500ms debounce to prevent excessive API calls
+        } else {
+          // Clear status if email is invalid or empty
+          emailStatus.textContent = "";
+          emailStatus.className = "email-status";
+        }
+      });
+
+      /**
+       * Client-side email format validation
+       * Uses regex to check basic email structure before AJAX call
+       * @param {string} email - Email address to validate
+       * @returns {boolean} - True if email format is valid
+       */
+      function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      }
+
+      /**
+       * AJAX call to check email availability on server
+       * Provides real-time feedback to user about email status
+       * @param {string} email - Email address to check
+       */
+      function checkEmailAvailability(email) {
+        fetch(`/check-email?email=${encodeURIComponent(email)}`)
+          .then((response) => response.text())
+          .then((result) => {
+            if (result === "exists") {
+              // Email already registered - show error state
+              emailStatus.textContent =
+                "This email address is already registered";
+              emailStatus.className = "email-status email-exists";
+              emailInput.classList.add("is-invalid");
             } else {
-                // Clear status if email is invalid or empty
-                emailStatus.textContent = '';
-                emailStatus.className = 'email-status';
+              // Email available - show success state
+              emailStatus.textContent = "Email address is available";
+              emailStatus.className = "email-status email-available";
+              emailInput.classList.remove("is-invalid");
             }
-        });
+          })
+          .catch((error) => {
+            // Handle network errors gracefully
+            console.error("Error checking email:", error);
+            emailStatus.textContent = "Unable to verify email availability";
+            emailStatus.className = "email-status";
+          });
+      }
 
-        /**
-         * Client-side email format validation
-         * Uses regex to check basic email structure before AJAX call
-         * @param {string} email - Email address to validate
-         * @returns {boolean} - True if email format is valid
-         */
-        function isValidEmail(email) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            return emailRegex.test(email);
-        }
+      /* ==========================================
+       *        FORM VALIDATION SYSTEM
+       * ========================================== */
 
-        /**
-         * AJAX call to check email availability on server
-         * Provides real-time feedback to user about email status
-         * @param {string} email - Email address to check
-         */
-        function checkEmailAvailability(email) {
-            fetch(`/check-email?email=${encodeURIComponent(email)}`)
-                .then(response => response.text())
-                .then(result => {
-                    if (result === 'exists') {
-                        // Email already registered - show error state
-                        emailStatus.textContent = 'This email address is already registered';
-                        emailStatus.className = 'email-status email-exists';
-                        emailInput.classList.add('is-invalid');
-                    } else {
-                        // Email available - show success state
-                        emailStatus.textContent = 'Email address is available';
-                        emailStatus.className = 'email-status email-available';
-                        emailInput.classList.remove('is-invalid');
-                    }
-                })
-                .catch(error => {
-                    // Handle network errors gracefully
-                    console.error('Error checking email:', error);
-                    emailStatus.textContent = 'Unable to verify email availability';
-                    emailStatus.className = 'email-status';
-                });
-        }
+      // Client-side form validation before submission
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (e) {
+          const requiredFields = this.querySelectorAll("[required]");
+          let isValid = true;
 
-        /* ==========================================
-         *        FORM VALIDATION SYSTEM
-         * ========================================== */
-
-        // Client-side form validation before submission
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            const requiredFields = this.querySelectorAll('[required]');
-            let isValid = true;
-
-            // Validate all required fields
-            requiredFields.forEach(field => {
-                if (!field.value.trim()) {
-                    field.classList.add('is-invalid');
-                    isValid = false;
-                } else {
-                    field.classList.remove('is-invalid');
-                }
-            });
-
-            // Prevent submission if validation fails
-            if (!isValid) {
-                e.preventDefault();
-                alert('Please fill in all required fields.');
+          // Validate all required fields
+          requiredFields.forEach((field) => {
+            if (!field.value.trim()) {
+              field.classList.add("is-invalid");
+              isValid = false;
+            } else {
+              field.classList.remove("is-invalid");
             }
+          });
+
+          // Prevent submission if validation fails
+          if (!isValid) {
+            e.preventDefault();
+            alert("Please fill in all required fields.");
+          }
         });
     </script>
-</body>
+  </body>
 </html>

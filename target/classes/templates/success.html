@@ -18,12 +18,12 @@
          * ========================================== */
 
       body {
-        /* Matching animated gradient background from registration page */
+        /* Burns Sheehan professional background */
         background: linear-gradient(
           135deg,
-          #667eea 0%,
-          #764ba2 50%,
-          #f093fb 100%
+          #1a1a1a 0%,
+          #2d2d2d 50%,
+          #404040 100%
         );
         min-height: 100vh;
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -171,8 +171,8 @@
         font-size: 2.5rem;
         position: relative;
         z-index: 1;
-        /* Gradient text effect */
-        background: linear-gradient(135deg, #22c55e, #16a34a);
+        /* Burns Sheehan brand colors */
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
@@ -256,21 +256,16 @@
          * ========================================== */
 
       .btn-primary {
-        background: linear-gradient(
-          135deg,
-          #667eea 0%,
-          #764ba2 50%,
-          #f093fb 100%
-        );
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
         border: none;
         padding: 16px 32px;
         font-weight: 700;
         font-size: 1rem;
         letter-spacing: 0.5px;
-        border-radius: 50px;
+        border-radius: 8px;
         margin: 0.5rem;
-        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4),
-          0 4px 10px rgba(102, 126, 234, 0.2);
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4),
+          0 4px 10px rgba(255, 107, 53, 0.2);
         transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         position: relative;
         overflow: hidden;
@@ -298,27 +293,21 @@
       }
 
       .btn-primary:hover {
-        background: linear-gradient(
-          135deg,
-          #5a6fd8 0%,
-          #6a4190 50%,
-          #e879f9 100%
-        );
+        background: linear-gradient(135deg, #e55a2b 0%, #e8830a 100%);
         transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5),
-          0 6px 15px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 12px 35px rgba(255, 107, 53, 0.5),
+          0 6px 15px rgba(255, 107, 53, 0.3);
       }
 
       .btn-outline-primary {
-        border: 2px solid;
-        border-image: linear-gradient(135deg, #667eea, #22c55e) 1;
-        color: #667eea;
+        border: 2px solid #ff6b35;
+        color: #ff6b35;
         background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
         padding: 14px 30px;
         font-weight: 700;
         margin: 0.5rem;
-        border-radius: 50px;
+        border-radius: 8px;
         transition: all 0.4s ease;
         position: relative;
         overflow: hidden;
@@ -326,11 +315,11 @@
       }
 
       .btn-outline-primary:hover {
-        background: linear-gradient(135deg, #667eea, #22c55e);
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
         color: white;
         transform: translateY(-3px) scale(1.02);
-        box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4),
-          0 6px 15px rgba(34, 197, 94, 0.3);
+        box-shadow: 0 12px 35px rgba(255, 107, 53, 0.4),
+          0 6px 15px rgba(255, 107, 53, 0.3);
       }
 
       /* ==========================================
@@ -460,7 +449,7 @@
             </div>
 
             <!-- Success Title -->
-            <h2 class="success-title">Registration Successful!</h2>
+            <h2 class="success-title">Registration Complete!</h2>
 
             <!-- Success Message -->
             <div
@@ -479,8 +468,9 @@
 
             <!-- Welcome Message -->
             <p class="text-muted">
-              Thank you for registering with AeroParker. Your account has been
-              successfully created and you're now part of our community!
+              Thank you for registering with Burns Sheehan. Your talent profile
+              has been successfully created and you're now part of our tech
+              community!
             </p>
 
             <!-- What's Next -->
@@ -488,20 +478,20 @@
               <h5 class="text-dark mb-3">What happens next?</h5>
               <ul class="features-list">
                 <li>
-                  <i class="fas fa-envelope text-primary me-2"></i>You'll
-                  receive a welcome email shortly
+                  <i class="fas fa-database text-primary me-2"></i>Your
+                  registration has been successfully saved
                 </li>
                 <li>
                   <i class="fas fa-user-check text-primary me-2"></i>Your
-                  account is now active and ready to use
+                  profile is now in our talent database
                 </li>
                 <li>
-                  <i class="fas fa-shield-alt text-primary me-2"></i>Your data
-                  is securely stored and protected
+                  <i class="fas fa-briefcase text-primary me-2"></i>Our
+                  recruiters will match you with relevant opportunities
                 </li>
                 <li>
-                  <i class="fas fa-headset text-primary me-2"></i>Our support
-                  team is available if you need help
+                  <i class="fas fa-headset text-primary me-2"></i>Our talent
+                  team is available to support your career journey
                 </li>
               </ul>
             </div>
@@ -510,7 +500,7 @@
             <div class="mt-4">
               <a href="/registration" class="btn btn-outline-primary">
                 <i class="fas fa-plus me-2"></i>
-                Register Another Customer
+                Register Another Talent
               </a>
               <button class="btn btn-primary" onclick="window.print()">
                 <i class="fas fa-print me-2"></i>
@@ -522,9 +512,9 @@
             <div class="mt-4 pt-3 border-top">
               <small class="text-muted">
                 <i class="fas fa-info-circle me-1"></i>
-                If you have any questions, please contact our support team at
-                <a href="mailto:support@aeroparker.com"
-                  >support@aeroparker.com</a
+                If you have any questions, please contact our talent team at
+                <a href="mailto:talent@burnssheehan.co.uk"
+                  >talent@burnssheehan.co.uk</a
                 >
               </small>
             </div>
