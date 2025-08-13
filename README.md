@@ -270,7 +270,7 @@ mvn clean package
 java -jar target/registration-1.0.0.jar
 ```
 
-### Docker Deployment
+### Docker Deployment (Optional)
 
 ```dockerfile
 FROM openjdk:17-jre-slim
